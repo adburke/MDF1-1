@@ -80,6 +80,18 @@
     NSLog(@"row=%d name=%@", indexPath.row, [[peopleArray objectAtIndex:indexPath.row] objectForKey:@"name"]);
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Remove from array
+        [peopleArray removeObjectAtIndex:indexPath.row];
+        
+        // Remove from table view
+        [mainTable deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:true];
+        
+    }
+}
+
 -(IBAction)onClick:(id)sender
 {
     UIButton *button = (UIButton*)sender;

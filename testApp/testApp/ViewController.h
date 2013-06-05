@@ -11,7 +11,6 @@
 @interface ViewController : UIViewController <UITableViewDelegate>
 {
     IBOutlet UITableView *mainTable;
-    IBOutlet UIButton *editBtn;
     
     NSMutableArray *peopleArray;
 }
