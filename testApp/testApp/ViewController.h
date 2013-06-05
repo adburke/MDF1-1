@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UITableViewDelegate>
 {
     IBOutlet UITableView *mainTable;
+    IBOutlet UIButton *editBtn;
     
     NSMutableArray *peopleArray;
 }
+
+-(IBAction)onClick:(id)sender;
+
 @end

@@ -14,25 +14,6 @@
 
 @implementation ViewController
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 10;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *cellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: cellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
-    
-    cell.textLabel.text = @"Testing";
-    
-    return cell;
-}
-
 - (void)viewDidLoad
 {
     peopleArray = [[NSMutableArray alloc] initWithObjects:
@@ -73,6 +54,44 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [peopleArray count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: cellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    cell.textLabel.text =[[peopleArray objectAtIndex: indexPath.row] objectForKey:@"name"];
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"row=%d name=%@", indexPath.row, [[peopleArray objectAtIndex:indexPath.row] objectForKey:@"name"]);
+}
+
+-(IBAction)onClick:(id)sender
+{
+    UIButton *button = (UIButton*)sender;
+    if (button) {
+        if (button.tag == 0 && [[button currentTitle] isEqual:@"Edit"]) {
+            [mainTable setEditing:true];
+            [button setTitle:@"Done" forState:UIControlStateNormal];
+        } else {
+            [mainTable setEditing:false];
+            [button setTitle:@"Edit" forState:UIControlStateNormal];
+        }
+    }
 }
 
 @end
