@@ -11,5 +11,7 @@
 @interface ViewController : UIViewController
 {
     IBOutlet UITableView *mainTable;
+    
+    NSMutableArray *peopleArray;
 }
 @end
