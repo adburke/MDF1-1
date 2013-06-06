@@ -41,20 +41,24 @@
 - (void)viewPersonInfo:(NSDictionary*)personInfo
 {
     NSLog(@"viewPersonInfo Fired");
+    // Set local dictionary to the passed in dictionary
     pInfo = personInfo;
     NSLog(@"name=%@ age=%@ hair=%@ location=%@", [pInfo objectForKey:@"name"],[pInfo objectForKey:@"age"],[pInfo objectForKey:@"hair"],[pInfo objectForKey:@"location"] );
 }
 
+// Controls the click even to close the view
 - (void)onClick:(id)sender
 {
     [self dismissViewControllerAnimated:TRUE completion:nil];
 }
 
+// Create 2 sections for the table
 - (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView
 {
     return 2;
 }
 
+// Controls how many rows are in each section
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
@@ -67,6 +71,7 @@
 
 }
 
+// Sets the heading titles for each section
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     NSString *sectionName;
@@ -78,6 +83,7 @@
     return sectionName;
 }
 
+// Controls the cell creation
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"Cell";
@@ -87,6 +93,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
+    // Used section number and row to put the correct values in the correct section and row
     if (indexPath.section == 0) {
         cell.textLabel.text = [pInfo objectForKey:@"name"];
     } else if (indexPath.section == 1 && indexPath.row == 0) {

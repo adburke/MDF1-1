@@ -80,7 +80,7 @@
             }
         }
     }
-    
+    // Sets both custom label text boxes with the correct data
     cell.leftLabelText.text =[[peopleArray objectAtIndex: indexPath.row] objectForKey:@"name"];
     cell.rightLabelText.text = [NSString stringWithFormat:@"row=%d",indexPath.row];
     
@@ -91,6 +91,8 @@
 {
     NSLog(@"row=%d name=%@", indexPath.row, [[peopleArray objectAtIndex:indexPath.row] objectForKey:@"name"]);
     
+    // Allocates and sets up the delegate for InfoViewController
+    // Passes the selected row dictionary of personal data to the InfoViewController
     InfoViewController *infoView = [[InfoViewController alloc] initWithNibName:@"InfoViewController" bundle:nil];
     if (infoView) {
         self.delegate = (id)infoView;
@@ -113,6 +115,8 @@
     }
 }
 
+// Controls the click of the edit button
+// Moves in and out of edit mode for the main table view
 -(IBAction)onClick:(id)sender
 {
     UIButton *button = (UIButton*)sender;
