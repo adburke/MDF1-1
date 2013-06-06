@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "InfoViewController.h"
 
 @protocol PersonInfoDelegate <NSObject>
 
@@ -22,6 +23,8 @@
     
     NSMutableArray *peopleArray;
 }
+
+@property (nonatomic, weak) id <PersonInfoDelegate> delegate;
 
 -(IBAction)onClick:(id)sender;
 
