@@ -16,6 +16,7 @@
     NSInteger count;
 }
 
+// Holds person info sent from viewController.m
 @property (nonatomic, strong) NSDictionary *pInfo;
 
 -(IBAction)onClick:(id)sender;

@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "CustomCellView.h"
 
 @interface ViewController ()
 
@@ -66,13 +67,22 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: cellIdentifier];
+    //This is the code for a base table view cell
+    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: cellIdentifier];
+    CustomCellView *cell = [tableView dequeueReusableCellWithIdentifier: cellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        // This is the code for a base table view cell
+        //cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        NSArray *views = [[NSBundle mainBundle] loadNibNamed:@"CustomCellView" owner:nil options:nil];
+        for (UIView *view in views) {
+            if ([view isKindOfClass:[CustomCellView class]]) {
+                cell = (CustomCellView*)view;
+            }
+        }
     }
     
-    cell.textLabel.text =[[peopleArray objectAtIndex: indexPath.row] objectForKey:@"name"];
+    cell.leftLabelText.text =[[peopleArray objectAtIndex: indexPath.row] objectForKey:@"name"];
+    cell.rightLabelText.text = [NSString stringWithFormat:@"row=%d",indexPath.row];
     
     return cell;
 }
