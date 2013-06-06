@@ -66,6 +66,17 @@
 
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *sectionName;
+    if (section == 0) {
+        sectionName = @"Name";
+    } else if (section == 1) {
+        sectionName = @"Personal Info";
+    }
+    return sectionName;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"Cell";
@@ -78,11 +89,11 @@
     if (indexPath.section == 0) {
         cell.textLabel.text = [pInfo objectForKey:@"name"];
     } else if (indexPath.section == 1 && indexPath.row == 0) {
-        cell.textLabel.text = [pInfo objectForKey:@"age"];
+        cell.textLabel.text = [NSString stringWithFormat:@"Age: %@" ,[pInfo objectForKey:@"age"]];
     } else if (indexPath.section == 1 && indexPath.row == 1) {
-        cell.textLabel.text = [pInfo objectForKey:@"hair"];
+        cell.textLabel.text = [NSString stringWithFormat:@"Hair Color: %@" ,[pInfo objectForKey:@"hair"]];
     } else if (indexPath.section == 1 && indexPath.row == 2) {
-        cell.textLabel.text = [pInfo objectForKey:@"location"];
+        cell.textLabel.text = [NSString stringWithFormat:@"Location: %@" ,[pInfo objectForKey:@"location"]];
     }
     
     return cell;
