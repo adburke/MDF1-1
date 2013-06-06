@@ -12,6 +12,7 @@
 @interface InfoViewController : UIViewController <UITableViewDelegate>
 {
     IBOutlet UITableView *infoTable;
+    IBOutlet UILabel *titleLabel;
     NSInteger count;
 }
 

@@ -27,6 +27,7 @@
 
 - (void)viewDidLoad
 {
+    titleLabel.text = [NSString stringWithFormat:@"Viewing Data for %@",[pInfo objectForKey:@"name"]];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
